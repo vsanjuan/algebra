@@ -75,9 +75,22 @@ class Vector(object):
 
         return Vector(normal_vector)
 
+    def dot(self, j):
+        try:
+            if not type(j) == Vector:
+                raise ValueError
+            if not self.dimension == j.dimension:
+                raise ValueError
 
+            mult = []
+            for i in range(self.dimension):
+                mult.append(self.coordinates[i] * j.coordinates[i])
 
+            return sum(mult)
 
+        except ValueError:
+            raise ValueError('The dot product must be between vectors with the \
+                           same dimensions.')
 
 
 a = Vector([8.218,-9.341])
@@ -105,3 +118,10 @@ print j.normal()
 
 print g.normal().magnitude()
 print j.normal().magnitude()
+
+# dot product
+k,j = Vector([7.887,4.138]),Vector([-8.802,6.776])
+l,m = Vector([-5.955,-4.904,-1.874]),Vector([-4.496,-8.755,7.103])
+
+print k.dot(j)
+print l.dot(m)
