@@ -148,17 +148,17 @@ class Vector(object):
 # print l.dot(m)
 
 # angle between vectors
-n,o = Vector([1,1]),Vector([2,2])
-q = Vector([-1,-1])
-
-print n.dimension, o.dimension
-print type(o) == Vector
-
-print math.degrees(n.angle(o))
-print math.degrees(n.angle(q))
-
-r, s = Vector([3.183,-7.627]),Vector([-2.668,5.319])
-t, u = Vector([7.35,0.221,5.188]),Vector([2.751,8.259,3.985])
-
-print r.angle(s)
-print math.degrees(t.angle(u))
+# n,o = Vector([1,1]),Vector([2,2])
+# q = Vector([-1,-1])
+#
+# print n.dimension, o.dimension
+# print type(o) == Vector
+#
+# print math.degrees(n.angle(o))
+# print math.degrees(n.angle(q))
+#
+# r, s = Vector([3.183,-7.627]),Vector([-2.668,5.319])
+# t, u = Vector([7.35,0.221,5.188]),Vector([2.751,8.259,3.985])
+#
+# print r.angle(s)
+# print math.degrees(t.angle(u))
