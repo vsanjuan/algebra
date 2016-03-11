@@ -125,17 +125,42 @@ class Vector(object):
         # Calculate the ortogonal projection of self over b
         return self - self.par_proj(b)
 
+    def cross_product(self,b):
+        # Cross product to vectors
+        x,y,z = 0,1,2
+        product = []
+        product.append(self.coordinates[y] * b.coordinates[z]
+                        - b.coordinates[y] * self.coordinates[z])
+        product.append(-(self.coordinates[x] * b.coordinates[z]
+                        - b.coordinates[x] * self.coordinates[z]))
+        product.append(self.coordinates[x] * b.coordinates[y]
+                        - b.coordinates[x] * self.coordinates[y])
+
+        print product
+
+        return Vector(product)
+
+# Vector product
+a,b = Vector([8.462,7.893,-8.187]),Vector([6.984,-5.975,4.778])
+c,d = Vector([-8.987,-9.838,5.031]),Vector([-4.268,-1.861,-8.866])
+e,f = Vector([1.5,9.547,3.691]),Vector([-6.007,0.124,5.772])
+
+print a.cross_product(b)
+print c.cross_product(d).magnitude()
+print e.cross_product(f).magnitude() /2
+
+
 # coding vector projecttions
 
-a,b = Vector([3.039,1.879]),Vector([0.825,2.036])
-c,d = Vector([-9.88,-3.264,-8.159]),Vector([-2.155,-9.353,-9.473])
-e,f = Vector([3.009,-6.172,3.692,-2.51]),Vector([6.404,-9.144,2.759,8.718])
-
-print a.par_proj(b)
-print a == a.par_proj(b) + a.ort_proj(b)
-print c.ort_proj(d)
-print e.par_proj(f)
-print e.ort_proj(f)
+# a,b = Vector([3.039,1.879]),Vector([0.825,2.036])
+# c,d = Vector([-9.88,-3.264,-8.159]),Vector([-2.155,-9.353,-9.473])
+# e,f = Vector([3.009,-6.172,3.692,-2.51]),Vector([6.404,-9.144,2.759,8.718])
+#
+# print a.par_proj(b)
+# print a == a.par_proj(b) + a.ort_proj(b)
+# print c.ort_proj(d)
+# print e.par_proj(f)
+# print e.ort_proj(f)
 
 
 # a = Vector([8.218,-9.341])
