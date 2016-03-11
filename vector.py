@@ -69,6 +69,7 @@ class Vector(object):
         return magn ** (0.5)
 
     def normal(self):
+        # transforms a vector into a vector of magnitude 1 (unit vector)
         magn = self.magnitude()
         normal_vector = []
 
@@ -112,6 +113,20 @@ class Vector(object):
         except ValueError:
             raise ValueError('To calculate the angle between two vectors must \
                             have the same dimensions.')
+
+    def is_zero(self, tolerance=1e-10):
+        return self.magnitude() < tolerance
+
+    def par_proj(self,b):
+        # Calculates the paralel vector as result of projecting self over b
+        return  b.normal() * self.dot(b.normal())
+
+# coding vector projecttions
+n = Vector([1,1])
+o = Vector([2,2])
+a,b = Vector([3.039,1.879]),Vector([0.825,2.036])
+
+print a.par_proj(b)
 
 
 # a = Vector([8.218,-9.341])
@@ -162,3 +177,15 @@ class Vector(object):
 #
 # print r.angle(s)
 # print math.degrees(t.angle(u))
+
+# Paralel or orthogonal
+
+# a, b = Vector([-7.579,-7.88]),Vector([22.737,23.64])
+# c, d = Vector([-2.029,9.97,4.172]),Vector([-9.231,-6.639,-7.245])
+# e, f = Vector([-2.328,-7.284,-1.214]),Vector([-1.821,1.072,-2.94])
+# g, h = Vector([2.118,4.827]),Vector([0,0])
+#
+# print math.degrees(a.angle(b))
+# print math.degrees(c.angle(d))
+# print math.degrees(e.angle(f))
+# print g.angle(h)
