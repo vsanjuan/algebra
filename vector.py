@@ -121,12 +121,21 @@ class Vector(object):
         # Calculates the paralel vector as result of projecting self over b
         return  b.normal() * self.dot(b.normal())
 
+    def ort_proj(self,b):
+        # Calculate the ortogonal projection of self over b
+        return self - self.par_proj(b)
+
 # coding vector projecttions
-n = Vector([1,1])
-o = Vector([2,2])
+
 a,b = Vector([3.039,1.879]),Vector([0.825,2.036])
+c,d = Vector([-9.88,-3.264,-8.159]),Vector([-2.155,-9.353,-9.473])
+e,f = Vector([3.009,-6.172,3.692,-2.51]),Vector([6.404,-9.144,2.759,8.718])
 
 print a.par_proj(b)
+print a == a.par_proj(b) + a.ort_proj(b)
+print c.ort_proj(d)
+print e.par_proj(f)
+print e.ort_proj(f)
 
 
 # a = Vector([8.218,-9.341])
