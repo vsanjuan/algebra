@@ -24,12 +24,17 @@ class Line(object):
             constant_term = Decimal('0')
         self.constant_term = Decimal(constant_term)
 
+        # test line
+        print self.normal_vector.coordinates
+
         self.set_basepoint()
 
 
     def set_basepoint(self):
         try:
-            n = self.normal_vector
+            n = self.normal_vector.coordinates # added coordinates to prevent
+            # iteration problem with the Vector.
+            print "n is type " + str(type(n)) # Track object type
             c = self.constant_term
             basepoint_coords = ['0']*self.dimension
 
@@ -71,7 +76,7 @@ class Line(object):
 
             return output
 
-        n = self.normal_vector
+        n = self.normal_vector.coordinates
 
         try:
             initial_index = Line.first_nonzero_index(n)
@@ -114,19 +119,36 @@ class Line(object):
         raise Exception(Line.NO_NONZERO_ELTS_FOUND_MSG)
 
 
-
-
 class MyDecimal(Decimal):
     def is_near_zero(self, eps=1e-10):
         return abs(self) < eps
 
 
-# Check paralel method
-x = Line(Vector(2,2,),3)
-y = Line(Vector(2,2),6))
-z = Line(Vector(4,4,),3)
+x = [1,2]
 
-print x.paralel(y)
-print x.paralel(z)
-print x.equal(y)
-print x.equal(z)
+x = Vector(x)
+
+print x.coordinates
+
+y = [1,2]
+
+print Line.first_nonzero_index(y)
+# print Line.first_nonzero_index(x)
+print Line.first_nonzero_index(x.coordinates)
+
+print Line(x,2)
+
+
+# Check paralel method
+# m = Vector(2,2)
+#
+# a = Line(m,3)
+
+# x = Line(Vector([2,2]),3)
+# y = Line(Vector([2,2]),6)
+# z = Line(Vector([4,4]),3)
+#
+# print x.paralel(y)
+# print x.paralel(z)
+# print x.equal(y)
+# print x.equal(z)
