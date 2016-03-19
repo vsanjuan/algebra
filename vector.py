@@ -136,18 +136,16 @@ class Vector(object):
         product.append(self.coordinates[x] * b.coordinates[y]
                         - b.coordinates[x] * self.coordinates[y])
 
-        print product
-
         return Vector(product)
 
 # Vector product
-a,b = Vector([8.462,7.893,-8.187]),Vector([6.984,-5.975,4.778])
-c,d = Vector([-8.987,-9.838,5.031]),Vector([-4.268,-1.861,-8.866])
-e,f = Vector([1.5,9.547,3.691]),Vector([-6.007,0.124,5.772])
-
-print a.cross_product(b)
-print c.cross_product(d).magnitude()
-print e.cross_product(f).magnitude() /2
+# a,b = Vector([8.462,7.893,-8.187]),Vector([6.984,-5.975,4.778])
+# c,d = Vector([-8.987,-9.838,5.031]),Vector([-4.268,-1.861,-8.866])
+# e,f = Vector([1.5,9.547,3.691]),Vector([-6.007,0.124,5.772])
+#
+# print a.cross_product(b)
+# print c.cross_product(d).magnitude()
+# print e.cross_product(f).magnitude() /2
 
 
 # coding vector projecttions
