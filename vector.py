@@ -151,25 +151,34 @@ class Vector(object):
 
         return Vector(product)
 
+# Test for angle ################################################
 
-
-a,b = Vector([1.182,5.562]), Vector([1.773,8.343])
-
-print a.magnitude()
-print b.magnitude()
-print a.dot(b) 
-
-x = a.dot(b) / (a.magnitude() * b.magnitude())
-
-print x > 1.0
-
-print x - 1.0
-
-print math.acos(round(x,3))
-
-
+a, b = Vector([4.046,2.836]), Vector([10.115,7.09])
 
 print a.angle(b)
+
+
+# Test for angle 0 ###############################################
+
+# a,b = Vector([1.182,5.562]), Vector([1.773,8.343])
+
+# print a.magnitude()
+# print b.magnitude()
+# print a.dot(b) 
+
+# x = a.dot(b) / (a.magnitude() * b.magnitude())
+
+# print x > 1.0
+
+# print x - 1.0
+
+# print math.acos(round(x,3))
+
+
+
+# print a.angle(b)
+
+####################################################################
 
 
 # Par projection two paralel vectors

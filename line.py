@@ -96,27 +96,28 @@ class Line(object):
         ang = self.normal_vector.angle(line2.normal_vector)
         return ang < 1e-5
 
-    def same_line(self,line2):
+    def __eq__(self,line2):
         base_point_line1 = self.basepoint
         base_point_line2 = line2.basepoint
 
         x = base_point_line1 - base_point_line2
 
         y = Decimal(x.dot(self.normal_vector))
-        print y
+        #print y
 
         return y == 0
 
     def intersection(self,line2):
-        if self.paralel(line2):
-            return False
 
-        A = self.normal_vector.coordinates[0]
-        B = self.normal_vector.coordinates[1]
-        C = line2.normal_vector.coordinates[0]
-        D = line2.normal_vector.coordinates[1]
+
+        A,B = self.normal_vector.coordinates
+        C,D = line2.normal_vector.coordinates
         k1 = float(self.constant_term)
-        k2 = float(self.constant_term)
+        k2 = float(line2.constant_term)
+
+        if self.paralel(line2):
+            #print A*D - B*C
+            return False
 
         x = (D*k1-B*k2)/(A*D-B*C)
         y = (-C*k1+A*k2)/(A*D-B*C)
@@ -147,16 +148,18 @@ class MyDecimal(Decimal):
 # print x.paralel(y)
 # print x.paralel(z)
 #
-# print x.same_line(y)
-# print x.same_line(z)
+# print x.__eq__(y)
+# print x.__eq__(z)
 #
 # print x.intersection(y)
 # print x.intersection(z)
 
 a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
-c,d = Line(Vector([7.204,3.18]),8.68),Line(Vector([8.172,4.114]),9.883)
+c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
 e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
 
-print a.paralel(b), a.same_line(b), a.intersection(b)
-print c.paralel(d), c.same_line(d), c.intersection(d)
-print e.paralel(f), e.same_line(f), e.intersection(f)
+print a.paralel(b), a.__eq__(b), a.intersection(b)
+print "#" * 48
+print c.paralel(d), c.__eq__(d), c.intersection(d)
+print "#" * 48
+print e.paralel(f), e.__eq__(f), e.intersection(f)
