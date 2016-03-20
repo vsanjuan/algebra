@@ -131,7 +131,7 @@ class Vector(object):
         return self.magnitude() < tolerance
 
     def par_proj(self,b):
-        # Calculates the paralel vector as result of projecting self over b
+        # Calculates the is_paralel_to vector as result of projecting self over b
         return  b.normal() * self.dot(b.normal())
 
     def ort_proj(self,b):
@@ -181,7 +181,7 @@ print a.angle(b)
 ####################################################################
 
 
-# Par projection two paralel vectors
+# Par projection two is_paralel_to vectors
 # x = Vector([2,2])
 # y = Vector([4,4])
 #
@@ -263,7 +263,7 @@ print a.angle(b)
 # print r.angle(s)
 # print math.degrees(t.angle(u))
 
-# Paralel or orthogonal
+# is_paralel_to or orthogonal
 
 # a, b = Vector([-7.579,-7.88]),Vector([22.737,23.64])
 # c, d = Vector([-2.029,9.97,4.172]),Vector([-9.231,-6.639,-7.245])

@@ -92,7 +92,7 @@ class Line(object):
         return outputf64f7ba64503521c3d0e814157afd545cfa81454
 
 
-    def paralel(self,line2):
+    def is_paralel_to(self,line2):
         ang = self.normal_vector.angle(line2.normal_vector)
         return ang < 1e-5
 
@@ -115,7 +115,7 @@ class Line(object):
         k1 = float(self.constant_term)
         k2 = float(line2.constant_term)
 
-        if self.paralel(line2):
+        if self.is_paralel_to(line2):
             #print A*D - B*C
             return False
 
@@ -145,8 +145,8 @@ class MyDecimal(Decimal):
 # print x.normal_vector, type(x.normal_vector)
 # print x.basepoint, type(x.basepoint)
 #
-# print x.paralel(y)
-# print x.paralel(z)
+# print x.is_paralel_to(y)
+# print x.is_paralel_to(z)
 #
 # print x.__eq__(y)
 # print x.__eq__(z)
@@ -154,12 +154,12 @@ class MyDecimal(Decimal):
 # print x.intersection(y)
 # print x.intersection(z)
 
-a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
-c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
-e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
+# a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
+# c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
+# e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
 
-print a.paralel(b), a.__eq__(b), a.intersection(b)
-print "#" * 48
-print c.paralel(d), c.__eq__(d), c.intersection(d)
-print "#" * 48
-print e.paralel(f), e.__eq__(f), e.intersection(f)
+# print a.is_paralel_to(b), a.__eq__(b), a.intersection(b)
+# print "#" * 48
+# print c.is_paralel_to(d), c.__eq__(d), c.intersection(d)
+# print "#" * 48
+# print e.is_paralel_to(f), e.__eq__(f), e.intersection(f)
