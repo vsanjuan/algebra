@@ -32,7 +32,7 @@ class Vector(object):
                 raise ValueError
             addition = []
             for i in range(self.dimension):
-                    addition.append(self.coordinates[i] + j.coordinates[i])
+                    addition.append(float(self.coordinates[i]) + float(j.coordinates[i])
 
             return Vector(addition)
 
@@ -45,7 +45,7 @@ class Vector(object):
                 raise ValueError
             substraction = []
             for i in range(self.dimension):
-                substraction.append(self.coordinates[i] - j.coordinates[i])
+                substraction.append(float(self.coordinates[i]) - float(j.coordinates[i]))
 
             return Vector(substraction)
 

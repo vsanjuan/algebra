@@ -91,6 +91,14 @@ class Plane(object):
     def is_paralel_to(self, plane2):
         return self.normal_vector.is_paralel_to(plane2.normal_vector)
 
+    def __eq__(self,plane2):
+
+        plane_basepoint = self.basepoint
+        plane2_basepoint = plane2.basepoint
+
+        vector_basepoint = plane_basepoint - plane2_basepoint
+
+        return self.normal_vector.is_orthogonal_to(vector_basepoint)
 
     @staticmethod
     def first_nonzero_index(iterable):
@@ -111,3 +119,7 @@ c = Plane(Vector([2,2,2]),5)
 
 print a.is_paralel_to(b)
 print a.is_paralel_to(c)
+
+print a == b
+print a == c
+
