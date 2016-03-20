@@ -103,9 +103,25 @@ class Line(object):
         x = base_point_line1 - base_point_line2
 
         y = Decimal(x.dot(self.normal_vector))
-        print y 
+        print y
 
         return y == 0
+
+    def intersection(self,line2):
+        if self.paralel(line2):
+            return False
+
+        A = self.normal_vector.coordinates[0]
+        B = self.normal_vector.coordinates[1]
+        C = line2.normal_vector.coordinates[0]
+        D = line2.normal_vector.coordinates[1]
+        k1 = self.constant_term
+        k2 = self.constant_term
+
+        x = (D*k1-B*k2)/(A*D-B*C)
+        y = (-C*k1+A*k2)/(A*D-B*C)
+
+        return Vector([x,y])
 
     @staticmethod
     def first_nonzero_index(iterable):
@@ -120,15 +136,19 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-x = Line(Vector([1,1]),1)
-y = Line(Vector([2,2]),2)
-z = Line(Vector([4,4]),1)
-
-print x.normal_vector, type(x.normal_vector)
-print x.basepoint, type(x.basepoint)
-
-print x.paralel(y)
-print x.paralel(z)
-
-print x.same_line(y)
-print x.same_line(z)
+# x = Line(Vector([1,1]),1)
+# y = Line(Vector([2,2]),2)
+# z = Line(Vector([3,5]),1)
+#
+#
+# print x.normal_vector, type(x.normal_vector)
+# print x.basepoint, type(x.basepoint)
+#
+# print x.paralel(y)
+# print x.paralel(z)
+#
+# print x.same_line(y)
+# print x.same_line(z)
+#
+# print x.intersection(y)
+# print x.intersection(z)
