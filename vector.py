@@ -116,6 +116,9 @@ class Vector(object):
             if not self.dimension == j.dimension:
                 raise ValueError
 
+            if self.magnitude() == 0 or j.magnitude() == 0:
+                return 0
+
             dot_product = self.dot(j)
             magnitudes = self.magnitude() * j.magnitude()
 

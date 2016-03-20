@@ -96,6 +96,19 @@ class Line(object):
         return self.normal_vector.is_paralel_to(line2.normal_vector)
 
     def __eq__(self,line2):
+
+        if self.normal_vector.is_zero():
+            if not line2.normal_vector.is_zero():
+                return False
+            else:
+                diff = self.constant_term - ell.constant_term
+                return MyDecimal(diff).is_near_zero()
+        elif line2.normal_vector.is_zero():
+            return False
+
+        if not self.is_paralel_to(line2):
+            return False
+
         base_point_line1 = self.basepoint
         base_point_line2 = line2.basepoint
 
@@ -133,7 +146,7 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-x = Line(Vector([1.0,1]),1.0)
+x = Line(Vector([0,0.0]),1.0)
 y = Line(Vector([2.0,2]),2)
 z = Line(Vector([3.0,5]),1.0)
 
@@ -149,6 +162,7 @@ print x.__eq__(z)
 
 print x.intersection(y)
 print x.intersection(z)
+print "#" * 48
 
 a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
 c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
