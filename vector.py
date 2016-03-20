@@ -1,5 +1,9 @@
 import math
 
+from decimal import Decimal, getcontext
+
+getcontext().prec = 30
+
 class Vector(object):
     def __init__(self, coordinates):
         try:
@@ -60,6 +64,13 @@ class Vector(object):
 
         except ValueError:
             raise ValueError('A vector must be multiplied by a number')
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        raise StopIteration
+
 
     def magnitude(self):
         magn = 0
@@ -137,6 +148,16 @@ class Vector(object):
                         - b.coordinates[x] * self.coordinates[y])
 
         return Vector(product)
+
+# Par projection two paralel vectors
+# x = Vector([2,2])
+# y = Vector([4,4])
+#
+# print x.par_proj(y)
+# print x.ort_proj(y)
+#
+# print x.angle(y)
+
 
 # Vector product
 # a,b = Vector([8.462,7.893,-8.187]),Vector([6.984,-5.975,4.778])

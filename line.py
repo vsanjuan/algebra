@@ -10,9 +10,6 @@ class Line(object):
     NO_NONZERO_ELTS_FOUND_MSG = 'No nonzero elements found'
 
     def __init__(self, normal_vector=None, constant_term=None):
-        # Normal vector is made up from the coeficients of the line equation and
-        # the constant from its constant. As such the normal vector is a vector
-        # object
         self.dimension = 2
 
         if not normal_vector:
@@ -24,23 +21,20 @@ class Line(object):
             constant_term = Decimal('0')
         self.constant_term = Decimal(constant_term)
 
-        # test line
-        print self.normal_vector.coordinates
-
         self.set_basepoint()
 
 
     def set_basepoint(self):
         try:
-            n = self.normal_vector.coordinates # added coordinates to prevent
-            # iteration problem with the Vector.
-            print "n is type " + str(type(n)) # Track object type
+            n = self.normal_vector.coordinates
             c = self.constant_term
-            basepoint_coords = ['0']*self.dimension
-
+            basepoint_coords = [0]*self.dimension
 
             initial_index = Line.first_nonzero_index(n)
-            initial_coefficient = n[initial_index]
+            print n
+            print "initial_index " + str(initial_index)
+            initial_coefficient = n[initial_index]   # Takes one element from
+            # the normal vector if is zero
 
             basepoint_coords[initial_index] = c/initial_coefficient
             self.basepoint = Vector(basepoint_coords)
@@ -98,18 +92,20 @@ class Line(object):
         return output
 
 
-        def paralel(self,line2):
-            # This function takes as input another line a checks if is paralel
-            # to it by comparing its normal vectors.
-            return 0 == self.normal_vector.dot(line2.normal_vector)
+    def paralel(self,line2):
+        ang = self.normal_vector.angle(line2.normal_vector)
+        return ang < 1e-5
 
-        def equal(self,line2):
-            if self.paralel(line2):
-                return False
-            line1_base_point = self.basepoint
-            line2_base_point = self.basepoint
-            x = line1_base_point - line2_base_point
-            return self.normal_vector.dot(x)
+    def same_line(self,line2):
+        base_point_line1 = self.basepoint
+        base_point_line2 = line2.basepoint
+
+        x = base_point_line1 - base_point_line2
+
+        y = Decimal(x.dot(self.normal_vector))
+        print y 
+
+        return y == 0
 
     @staticmethod
     def first_nonzero_index(iterable):
@@ -124,31 +120,15 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-x = [1,2]
+x = Line(Vector([1,1]),1)
+y = Line(Vector([2,2]),2)
+z = Line(Vector([4,4]),1)
 
-x = Vector(x)
+print x.normal_vector, type(x.normal_vector)
+print x.basepoint, type(x.basepoint)
 
-print x.coordinates
+print x.paralel(y)
+print x.paralel(z)
 
-y = [1,2]
-
-print Line.first_nonzero_index(y)
-# print Line.first_nonzero_index(x)
-print Line.first_nonzero_index(x.coordinates)
-
-print Line(x,2)
-
-
-# Check paralel method
-# m = Vector(2,2)
-#
-# a = Line(m,3)
-
-# x = Line(Vector([2,2]),3)
-# y = Line(Vector([2,2]),6)
-# z = Line(Vector([4,4]),3)
-#
-# print x.paralel(y)
-# print x.paralel(z)
-# print x.equal(y)
-# print x.equal(z)
+print x.same_line(y)
+print x.same_line(z)
