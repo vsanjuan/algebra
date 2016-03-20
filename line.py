@@ -136,9 +136,9 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-x = Line(Vector([1.0,1]),1.0)
-y = Line(Vector([2.0,2]),2)
-z = Line(Vector([3.0,5]),1.0)
+# x = Line(Vector([1.0,1]),1.0)
+# y = Line(Vector([2.0,2]),2)
+# z = Line(Vector([3.0,5]),1.0)
 #
 #
 # print x.normal_vector, type(x.normal_vector)
@@ -150,5 +150,13 @@ z = Line(Vector([3.0,5]),1.0)
 # print x.same_line(y)
 # print x.same_line(z)
 #
-print x.intersection(y)
-print x.intersection(z)
+# print x.intersection(y)
+# print x.intersection(z)
+
+a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
+c,d = Line(Vector([7.204,3.18]),8.68),Line(Vector([8.172,4.114]),9.883)
+e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
+
+print a.paralel(b), a.same_line(b), a.intersection(b)
+print c.paralel(d), c.same_line(d), c.intersection(d)
+print e.paralel(f), e.same_line(f), e.intersection(f)
