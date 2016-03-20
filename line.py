@@ -93,8 +93,7 @@ class Line(object):
 
 
     def is_paralel_to(self,line2):
-        ang = self.normal_vector.angle(line2.normal_vector)
-        return ang < 1e-5
+        return self.normal_vector.is_paralel_to(line2.normal_vector)
 
     def __eq__(self,line2):
         base_point_line1 = self.basepoint
@@ -140,17 +139,17 @@ class MyDecimal(Decimal):
 # x = Line(Vector([1.0,1]),1.0)
 # y = Line(Vector([2.0,2]),2)
 # z = Line(Vector([3.0,5]),1.0)
-#
-#
+
+
 # print x.normal_vector, type(x.normal_vector)
 # print x.basepoint, type(x.basepoint)
-#
+
 # print x.is_paralel_to(y)
 # print x.is_paralel_to(z)
-#
+
 # print x.__eq__(y)
 # print x.__eq__(z)
-#
+
 # print x.intersection(y)
 # print x.intersection(z)
 

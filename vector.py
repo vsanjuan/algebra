@@ -138,6 +138,9 @@ class Vector(object):
         # Calculate the ortogonal projection of self over b
         return self - self.par_proj(b)
 
+    def is_paralel_to(self,b):
+        return self.angle(b) < 1e-5
+
     def cross_product(self,b):
         # Cross product to vectors
         x,y,z = 0,1,2
