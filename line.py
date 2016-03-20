@@ -31,8 +31,8 @@ class Line(object):
             basepoint_coords = [0]*self.dimension
 
             initial_index = Line.first_nonzero_index(n)
-            # print n
-            # print "initial_index " + str(initial_index)
+            print n
+            print "initial_index " + str(initial_index)
             initial_coefficient = n[initial_index]   # Takes one element from
             # the normal vector if is zero
 
@@ -136,9 +136,9 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-x = Line(Vector([1,1]),1)
-y = Line(Vector([2,2]),2)
-z = Line(Vector([3,5]),1)
+# x = Line(Vector([1,1]),1)
+# y = Line(Vector([2,2]),2)
+# z = Line(Vector([3,5]),1)
 #
 #
 # print x.normal_vector, type(x.normal_vector)
@@ -150,6 +150,5 @@ z = Line(Vector([3,5]),1)
 # print x.same_line(y)
 # print x.same_line(z)
 #
-print x.intersection(y)
-print x.intersection(z)
-
+# print x.intersection(y)
+# print x.intersection(z)
