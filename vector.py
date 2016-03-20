@@ -119,7 +119,9 @@ class Vector(object):
             dot_product = self.dot(j)
             magnitudes = self.magnitude() * j.magnitude()
 
-            return math.acos( dot_product / magnitudes)
+            #print dot_product / magnitudes
+
+            return math.acos(round(dot_product / magnitudes,3))
 
         except ValueError:
             raise ValueError('To calculate the angle between two vectors must \
@@ -148,6 +150,27 @@ class Vector(object):
                         - b.coordinates[x] * self.coordinates[y])
 
         return Vector(product)
+
+
+
+a,b = Vector([1.182,5.562]), Vector([1.773,8.343])
+
+print a.magnitude()
+print b.magnitude()
+print a.dot(b) 
+
+x = a.dot(b) / (a.magnitude() * b.magnitude())
+
+print x > 1.0
+
+print x - 1.0
+
+print math.acos(round(x,3))
+
+
+
+print a.angle(b)
+
 
 # Par projection two paralel vectors
 # x = Vector([2,2])
@@ -242,3 +265,4 @@ class Vector(object):
 # print math.degrees(c.angle(d))
 # print math.degrees(e.angle(f))
 # print g.angle(h)
+
