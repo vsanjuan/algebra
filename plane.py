@@ -1,4 +1,5 @@
 from decimal import Decimal, getcontext
+import math
 
 from vector import Vector
 
@@ -27,7 +28,7 @@ class Plane(object):
     def set_basepoint(self):
         try:
             n = self.normal_vector.coordinates
-            c = self.constant_term
+            c = float(self.constant_term)
             basepoint_coords = ['0']*self.dimension
 
             initial_index = Plane.first_nonzero_index(n)
@@ -41,7 +42,6 @@ class Plane(object):
                 self.basepoint = None
             else:
                 raise e
-
 
     def __str__(self):
 
@@ -89,14 +89,23 @@ class Plane(object):
         return output
 
     def is_paralel_to(self, plane2):
+        # print math.degrees(self.normal_vector.angle(plane2.normal_vector))
         return self.normal_vector.is_paralel_to(plane2.normal_vector)
 
     def __eq__(self,plane2):
 
+        if not self.is_paralel_to(plane2):
+            return False
+
         plane_basepoint = self.basepoint
         plane2_basepoint = plane2.basepoint
 
+        # print plane_basepoint, plane2_basepoint
+
         vector_basepoint = plane_basepoint - plane2_basepoint
+
+        if vector_basepoint.is_zero():
+            return True
 
         return self.normal_vector.is_orthogonal_to(vector_basepoint)
 
@@ -113,13 +122,29 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-a = Plane(Vector([1,1,1]),1)
-b = Plane(Vector([2,2,2]),2)
-c = Plane(Vector([2,2,2]),5)
+# a = Plane(Vector([1.0,1.0,1.0]),1)
+# b = Plane(Vector([2,2,2]),2)
+# c = Plane(Vector([2,2,2]),5)
+# d = Plane(Vector([3,4,7]),3)
 
-print a.is_paralel_to(b)
-print a.is_paralel_to(c)
+# print a.is_paralel_to(b)
+# print a.is_paralel_to(c)
+# print d.is_paralel_to(a)
 
-print a == b
-print a == c
+# print a == b
+# print a == c
+# print a == d
 
+# print "*" * 64
+
+a,b = Plane(Vector([-0.412,3.806,0.728]),-3.46),Plane(Vector([1.03,-9.515,-1.82]),8.65)
+c,d = Plane(Vector([2.611,5.528,0.283]),4.6),Plane(Vector([7.715,8.306,5.342]),3.76)
+d,e = Plane(Vector([-7.926,8.625,-7.212]),-7.952),Plane(Vector([-2.642,2.875,-2.404]),-2.443)
+
+print "*" * 64
+# print a.normal_vector.angle(b.normal_vector)
+print a.is_paralel_to(b), a == b
+print "*" * 64
+print c.is_paralel_to(d), c == d
+print "*" * 64
+print d.is_paralel_to(e), d == e

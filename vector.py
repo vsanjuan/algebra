@@ -32,7 +32,7 @@ class Vector(object):
                 raise ValueError
             addition = []
             for i in range(self.dimension):
-                    addition.append(float(self.coordinates[i]) + float(j.coordinates[i])
+                    addition.append(float(self.coordinates[i]) + float(j.coordinates[i]))
 
             return Vector(addition)
 
@@ -142,7 +142,8 @@ class Vector(object):
         return self - self.par_proj(b)
 
     def is_paralel_to(self,b):
-        return self.angle(b) < 1e-5
+
+        return (self.angle(b) < 1e-5) or ( (1- (self.angle(b) / math.pi))  < 1e-5)
 
     def is_orthogonal_to(self,b):
         return self.dot(b) == 0 
@@ -191,14 +192,16 @@ class Vector(object):
 ####################################################################
 
 
-# Par projection two is_paralel_to vectors
-# x = Vector([2,2])
-# y = Vector([4,4])
-#
+#Par projection two is_paralel_to vectors
+# x = Vector([0,1])
+# y = Vector([0,-1])
+
 # print x.par_proj(y)
 # print x.ort_proj(y)
-#
+
 # print x.angle(y)
+# print x.angle(y) / math.pi
+# print x.is_paralel_to(y)
 
 
 # Vector product
