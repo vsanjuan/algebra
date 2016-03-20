@@ -163,9 +163,9 @@ class Vector(object):
 
 # Test for angle ################################################
 
-a, b = Vector([4.046,2.836]), Vector([10.115,7.09])
+# a, b = Vector([4.046,2.836]), Vector([10.115,7.09])
 
-print a.angle(b)
+# print a.angle(b)
 
 
 # Test for angle 0 ###############################################

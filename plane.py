@@ -26,7 +26,7 @@ class Plane(object):
 
     def set_basepoint(self):
         try:
-            n = self.normal_vector
+            n = self.normal_vector.coordinates
             c = self.constant_term
             basepoint_coords = ['0']*self.dimension
 
@@ -88,6 +88,9 @@ class Plane(object):
 
         return output
 
+    def is_paralel_to(self, plane2):
+        return self.normal_vector.is_paralel_to(plane2.normal_vector)
+
 
     @staticmethod
     def first_nonzero_index(iterable):
@@ -100,3 +103,11 @@ class Plane(object):
 class MyDecimal(Decimal):
     def is_near_zero(self, eps=1e-10):
         return abs(self) < eps
+
+
+a = Plane(Vector([1,1,1]),1)
+b = Plane(Vector([2,2,2]),2)
+c = Plane(Vector([2,2,2]),5)
+
+print a.is_paralel_to(b)
+print a.is_paralel_to(c)
