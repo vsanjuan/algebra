@@ -27,12 +27,12 @@ class Line(object):
     def set_basepoint(self):
         try:
             n = self.normal_vector.coordinates
-            c = self.constant_term
+            c = float(self.constant_term)
             basepoint_coords = [0]*self.dimension
 
             initial_index = Line.first_nonzero_index(n)
-            print n
-            print "initial_index " + str(initial_index)
+            # print n
+            # print "initial_index " + str(initial_index)
             initial_coefficient = n[initial_index]   # Takes one element from
             # the normal vector if is zero
 
@@ -89,7 +89,7 @@ class Line(object):
             constant = int(constant)
         output += ' = {}'.format(constant)
 
-        return output
+        return outputf64f7ba64503521c3d0e814157afd545cfa81454
 
 
     def paralel(self,line2):
@@ -115,8 +115,8 @@ class Line(object):
         B = self.normal_vector.coordinates[1]
         C = line2.normal_vector.coordinates[0]
         D = line2.normal_vector.coordinates[1]
-        k1 = self.constant_term
-        k2 = self.constant_term
+        k1 = float(self.constant_term)
+        k2 = float(self.constant_term)
 
         x = (D*k1-B*k2)/(A*D-B*C)
         y = (-C*k1+A*k2)/(A*D-B*C)
@@ -136,9 +136,9 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-# x = Line(Vector([1,1]),1)
-# y = Line(Vector([2,2]),2)
-# z = Line(Vector([3,5]),1)
+x = Line(Vector([1.0,1]),1.0)
+y = Line(Vector([2.0,2]),2)
+z = Line(Vector([3.0,5]),1.0)
 #
 #
 # print x.normal_vector, type(x.normal_vector)
@@ -150,5 +150,5 @@ class MyDecimal(Decimal):
 # print x.same_line(y)
 # print x.same_line(z)
 #
-# print x.intersection(y)
-# print x.intersection(z)
+print x.intersection(y)
+print x.intersection(z)
