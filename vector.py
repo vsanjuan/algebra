@@ -141,6 +141,10 @@ class Vector(object):
     def is_paralel_to(self,b):
         return self.angle(b) < 1e-5
 
+    def is_orthogonal_to(self,b):
+        return self.dot(b) == 0 
+
+
     def cross_product(self,b):
         # Cross product to vectors
         x,y,z = 0,1,2

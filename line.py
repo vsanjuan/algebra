@@ -101,10 +101,7 @@ class Line(object):
 
         x = base_point_line1 - base_point_line2
 
-        y = Decimal(x.dot(self.normal_vector))
-        #print y
-
-        return y == 0
+        return x.is_orthogonal_to(self.normal_vector)
 
     def intersection(self,line2):
 
@@ -136,29 +133,29 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-# x = Line(Vector([1.0,1]),1.0)
-# y = Line(Vector([2.0,2]),2)
-# z = Line(Vector([3.0,5]),1.0)
+x = Line(Vector([1.0,1]),1.0)
+y = Line(Vector([2.0,2]),2)
+z = Line(Vector([3.0,5]),1.0)
 
 
-# print x.normal_vector, type(x.normal_vector)
-# print x.basepoint, type(x.basepoint)
+print x.normal_vector, type(x.normal_vector)
+print x.basepoint, type(x.basepoint)
 
-# print x.is_paralel_to(y)
-# print x.is_paralel_to(z)
+print x.is_paralel_to(y)
+print x.is_paralel_to(z)
 
-# print x.__eq__(y)
-# print x.__eq__(z)
+print x.__eq__(y)
+print x.__eq__(z)
 
-# print x.intersection(y)
-# print x.intersection(z)
+print x.intersection(y)
+print x.intersection(z)
 
-# a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
-# c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
-# e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
+a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
+c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
+e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
 
-# print a.is_paralel_to(b), a.__eq__(b), a.intersection(b)
-# print "#" * 48
-# print c.is_paralel_to(d), c.__eq__(d), c.intersection(d)
-# print "#" * 48
-# print e.is_paralel_to(f), e.__eq__(f), e.intersection(f)
+print a.is_paralel_to(b), a.__eq__(b), a.intersection(b)
+print "#" * 48
+print c.is_paralel_to(d), c.__eq__(d), c.intersection(d)
+print "#" * 48
+print e.is_paralel_to(f), e.__eq__(f), e.intersection(f)
