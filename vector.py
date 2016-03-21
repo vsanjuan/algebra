@@ -66,7 +66,7 @@ class Vector(object):
             raise ValueError('A vector must be multiplied by a number')
 
     def __iter__(self):
-        return selff64f7ba64503521c3d0e814157afd545cfa81454
+        return self
 
     def next(self):
         raise StopIteration
