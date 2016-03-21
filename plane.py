@@ -24,15 +24,16 @@ class Plane(object):
 
         self.set_basepoint()
 
-
     def set_basepoint(self):
         try:
             n = self.normal_vector.coordinates
             c = float(self.constant_term)
+            # c = self.constant_term
             basepoint_coords = ['0']*self.dimension
 
             initial_index = Plane.first_nonzero_index(n)
-            initial_coefficient = n[initial_index]
+            # initial_coefficient = n[initial_index]
+            initial_coefficient = float(n[initial_index])
 
             basepoint_coords[initial_index] = c/initial_coefficient
             self.basepoint = Vector(basepoint_coords)
@@ -137,14 +138,18 @@ class MyDecimal(Decimal):
 
 # print "*" * 64
 
-a,b = Plane(Vector([-0.412,3.806,0.728]),-3.46),Plane(Vector([1.03,-9.515,-1.82]),8.65)
-c,d = Plane(Vector([2.611,5.528,0.283]),4.6),Plane(Vector([7.715,8.306,5.342]),3.76)
-d,e = Plane(Vector([-7.926,8.625,-7.212]),-7.952),Plane(Vector([-2.642,2.875,-2.404]),-2.443)
+# a,b = Plane(Vector([-0.412,3.806,0.728]),-3.46),Plane(Vector([1.03,-9.515,-1.82]),8.65)
+# c,d = Plane(Vector([2.611,5.528,0.283]),4.6),Plane(Vector([7.715,8.306,5.342]),3.76)
+# d,e = Plane(Vector([-7.926,8.625,-7.212]),-7.952),Plane(Vector([-2.642,2.875,-2.404]),-2.443)
 
-print "*" * 64
-# print a.normal_vector.angle(b.normal_vector)
-print a.is_paralel_to(b), a == b
-print "*" * 64
-print c.is_paralel_to(d), c == d
-print "*" * 64
-print d.is_paralel_to(e), d == e
+# print "*" * 64
+# # print a.normal_vector.angle(b.normal_vector)
+# print a.is_paralel_to(b), a == b
+# print "*" * 64
+# print c.is_paralel_to(d), c == d
+# print "*" * 64
+# print d.is_paralel_to(e), d == e
+
+# p = Vector([1,1,1])
+
+# print Plane.first_nonzero_index(p)

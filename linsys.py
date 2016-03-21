@@ -46,6 +46,7 @@ class LinearSystem(object):
 
         for i,p in enumerate(self.planes):
             try:
+                #print p.normal_vector
                 indices[i] = p.first_nonzero_index(p.normal_vector)
             except Exception as e:
                 if str(e) == Plane.NO_NONZERO_ELTS_FOUND_MSG:
