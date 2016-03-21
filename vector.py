@@ -75,7 +75,7 @@ class Vector(object):
     def magnitude(self):
         magn = 0
         for coor in self.coordinates:
-            magn += coor ** 2
+            magn += float(coor) ** 2
 
         return magn ** (0.5)
 
@@ -98,7 +98,7 @@ class Vector(object):
 
             mult = []
             for i in range(self.dimension):
-                mult.append(self.coordinates[i] * j.coordinates[i])
+                mult.append(float(self.coordinates[i]) * float(j.coordinates[i]))
 
             return sum(mult)
 
