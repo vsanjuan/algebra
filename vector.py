@@ -9,7 +9,8 @@ class Vector(object):
         try:
             if not coordinates:
                 raise ValueError
-            self.coordinates = tuple(coordinates)
+            decimal_coordinates = [Decimal(x) for x in coordinates]
+            self.coordinates = tuple(decimal_coordinates)
             self.dimension = len(coordinates)
 
         except ValueError:
@@ -55,10 +56,13 @@ class Vector(object):
     def __mul__(self, j):
         try:
             if not type(j*1.0) == float:
+            # if not type(j*1.0) == float:
                 raise ValueError
             value = []
             for coor_v in self.coordinates:
-                    value.append(coor_v * j)
+                    value.append(coor_v * Decimal(j))
+
+            # print value
 
             return Vector(value)
 
@@ -77,7 +81,7 @@ class Vector(object):
         for coor in self.coordinates:
             magn += float(coor) ** 2
 
-        return magn ** (0.5)
+        return Decimal(magn ** (0.5))
 
     def normal(self):
         # transforms a vector into a vector of magnitude 1 (unit vector)
@@ -100,7 +104,7 @@ class Vector(object):
             for i in range(self.dimension):
                 mult.append(float(self.coordinates[i]) * float(j.coordinates[i]))
 
-            return sum(mult)
+            return Decimal(sum(mult))
 
         except ValueError:
             raise ValueError('The dot product must be between vectors with the \
@@ -208,10 +212,12 @@ class Vector(object):
 # a,b = Vector([8.462,7.893,-8.187]),Vector([6.984,-5.975,4.778])
 # c,d = Vector([-8.987,-9.838,5.031]),Vector([-4.268,-1.861,-8.866])
 # e,f = Vector([1.5,9.547,3.691]),Vector([-6.007,0.124,5.772])
-#
+
 # print a.cross_product(b)
 # print c.cross_product(d).magnitude()
 # print e.cross_product(f).magnitude() /2
+
+# print a
 
 
 # coding vector projecttions
@@ -219,29 +225,31 @@ class Vector(object):
 # a,b = Vector([3.039,1.879]),Vector([0.825,2.036])
 # c,d = Vector([-9.88,-3.264,-8.159]),Vector([-2.155,-9.353,-9.473])
 # e,f = Vector([3.009,-6.172,3.692,-2.51]),Vector([6.404,-9.144,2.759,8.718])
-#
+
 # print a.par_proj(b)
 # print a == a.par_proj(b) + a.ort_proj(b)
 # print c.ort_proj(d)
 # print e.par_proj(f)
 # print e.ort_proj(f)
 
+# print a.coordinates
+
 
 # a = Vector([8.218,-9.341])
 # b = Vector([-1.129,2.111])
-#
+
 # c = Vector([7.119,8.215])
 # d = Vector([-8.223,0.878])
-#
-# e = Vector([1.671,-1.012,-0.318])dot_product/
-#
+
+# e = Vector([1.671,-1.012,-0.318])
+
 # f = Vector([-0.221,7.437])
 # g = Vector([5.581,-2.136])
-#
+
 # h = Vector([8.813,-1.331,-6.247])
 # j = Vector([1.996,3.108,-4.554])
-#
-#
+
+
 # print a + b
 # print c - d
 # print e * 7.41
@@ -249,30 +257,30 @@ class Vector(object):
 # print h.magnitude()
 # print g.normal()
 # print j.normal()
-#
+
 # print g.normal().magnitude()
 # print j.normal().magnitude()
 #
 # # dot product
 # k,j = Vector([7.887,4.138]),Vector([-8.802,6.776])
 # l,m = Vector([-5.955,-4.904,-1.874]),Vector([-4.496,-8.755,7.103])
-#
+
 # print k.dot(j)
 # print l.dot(m)
 
 # angle between vectors
 # n,o = Vector([1,1]),Vector([2,2])
 # q = Vector([-1,-1])
-#
+
 # print n.dimension, o.dimension
 # print type(o) == Vector
-#
+
 # print math.degrees(n.angle(o))
 # print math.degrees(n.angle(q))
-#
+
 # r, s = Vector([3.183,-7.627]),Vector([-2.668,5.319])
 # t, u = Vector([7.35,0.221,5.188]),Vector([2.751,8.259,3.985])
-#
+
 # print r.angle(s)
 # print math.degrees(t.angle(u))
 
@@ -282,7 +290,7 @@ class Vector(object):
 # c, d = Vector([-2.029,9.97,4.172]),Vector([-9.231,-6.639,-7.245])
 # e, f = Vector([-2.328,-7.284,-1.214]),Vector([-1.821,1.072,-2.94])
 # g, h = Vector([2.118,4.827]),Vector([0,0])
-#
+
 # print math.degrees(a.angle(b))
 # print math.degrees(c.angle(d))
 # print math.degrees(e.angle(f))

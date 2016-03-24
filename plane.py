@@ -89,6 +89,18 @@ class Plane(object):
 
         return output
 
+    def __mul__(self, j):
+
+
+        # print self.normal_vector, self.constant_term, j
+
+        normal_vector = self.normal_vector * j
+        constant_term = self.constant_term * j
+
+        # print normal_vector
+
+        return Plane(normal_vector,constant_term)
+
     def is_paralel_to(self, plane2):
         # print math.degrees(self.normal_vector.angle(plane2.normal_vector))
         return self.normal_vector.is_paralel_to(plane2.normal_vector)
@@ -123,10 +135,32 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-# a = Plane(Vector([1.0,1.0,1.0]),1)
+# Check equality operator after multiplying
+
+# p0 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
+# p1 = Plane(normal_vector=Vector(['0','1','0']), constant_term='2')
+# p2 = Plane(normal_vector=Vector(['1','1','-1']), constant_term='3')
+# p3 = Plane(normal_vector=Vector(['1','0','-2']), constant_term='2')
+
+
+# print p2.normal_vector, p2.constant_term
+# print p2.normal_vector == Vector([-1,-1,1])
+# print p2 == Plane(Vector(['-1','-1','1']),-3) 
+# print p0 == p2
+# print p0 == p1 
+
+
+# Check equality and paralelism
+
+# a = Plane(Vector(['1.0','1.0','1.0']),'1')
 # b = Plane(Vector([2,2,2]),2)
 # c = Plane(Vector([2,2,2]),5)
 # d = Plane(Vector([3,4,7]),3)
+
+# print a.normal_vector, a.constant_term, a.basepoint
+
+# print a * 3 
+
 
 # print a.is_paralel_to(b)
 # print a.is_paralel_to(c)

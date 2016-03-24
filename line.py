@@ -16,6 +16,7 @@ class Line(object):
             all_zeros = ['0']*self.dimension
             normal_vector = Vector(all_zeros)
         self.normal_vector = normal_vector
+        # self.normal_vector = [Decimal(x) for x in normal_vector]
 
         if not constant_term:
             constant_term = Decimal('0')
@@ -27,8 +28,8 @@ class Line(object):
     def set_basepoint(self):
         try:
             n = self.normal_vector.coordinates
-            c = float(self.constant_term)
-            basepoint_coords = [0]*self.dimension
+            c = self.constant_term
+            basepoint_coords = ['0']*self.dimension
 
             initial_index = Line.first_nonzero_index(n)
             # print n
@@ -121,8 +122,13 @@ class Line(object):
 
         A,B = self.normal_vector.coordinates
         C,D = line2.normal_vector.coordinates
-        k1 = float(self.constant_term)
-        k2 = float(line2.constant_term)
+        # k1 = float(self.constant_term)
+        # k2 = float(line2.constant_term)
+        k1 = self.constant_term
+        k2 = line2.constant_term
+
+        print A,B,C,D,k1,k2
+        print type(A),type(B),type(C),type(D),type(k1),type(k2)
 
         if self.is_paralel_to(line2):
             #print A*D - B*C
@@ -146,30 +152,33 @@ class MyDecimal(Decimal):
         return abs(self) < eps
 
 
-# x = Line(Vector([0,0.0]),1.0)
-# y = Line(Vector([2.0,2]),2)
-# z = Line(Vector([3.0,5]),1.0)
+x = Line(Vector([1,1]),1.0)
+y = Line(Vector([2,2]),2)
+z = Line(Vector([3.0,5]),1.0)
 
 
-# print x.normal_vector, type(x.normal_vector)
-# print x.basepoint, type(x.basepoint)
+print x.normal_vector, type(x.normal_vector)
+print x.basepoint, type(x.basepoint)
 
-# print x.is_paralel_to(y)
-# print x.is_paralel_to(z)
+print x.is_paralel_to(y)
+print x.is_paralel_to(z)
 
-# print x.__eq__(y)
-# print x.__eq__(z)
+print x.__eq__(y)
+print x.__eq__(z)
 
-# print x.intersection(y)
-# print x.intersection(z)
-# print "#" * 48
+print x == y
+print x == z
 
-# a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
-# c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
-# e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
+print x.intersection(y)
+print x.intersection(z)
+print "#" * 48
 
-# print a.is_paralel_to(b), a.__eq__(b), a.intersection(b)
-# print "#" * 48
-# print c.is_paralel_to(d), c.__eq__(d), c.intersection(d)
-# print "#" * 48
-# print e.is_paralel_to(f), e.__eq__(f), e.intersection(f)
+a,b = Line(Vector([4.046,2.836]),1.21),Line(Vector([10.115,7.09]),3.025)
+c,d = Line(Vector([7.204,3.182]),8.68),Line(Vector([8.172,4.114]),9.883)
+e,f = Line(Vector([1.182,5.562]),6.744), Line(Vector([1.773,8.343]),9.525)
+
+print a.is_paralel_to(b), a.__eq__(b), a.intersection(b)
+print "#" * 48
+print c.is_paralel_to(d), c.__eq__(d), c.intersection(d)
+print "#" * 48
+print e.is_paralel_to(f), e.__eq__(f), e.intersection(f)

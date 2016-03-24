@@ -1,5 +1,6 @@
 from linsys import LinearSystem
 from plane import Plane
+from vector import Vector
 
 
 p0 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
@@ -21,10 +22,14 @@ if not (s[0] == p1 and s[1] == p0 and s[2] == p2 and s[3] == p3):
     print 'test case 3 failed'
 
 s.multiply_coefficient_and_row(1,0)
+print s[0].normal_vector, p1.normal_vector
 if not (s[0] == p1 and s[1] == p0 and s[2] == p2 and s[3] == p3):
     print 'test case 4 failed'
 
 s.multiply_coefficient_and_row(-1,2)
+print s[2].normal_vector, s[2].constant_term
+print s[2].normal_vector == Vector(['-1','-1','1'])
+print s[2] == Plane(Vector(['-1','-1','1']),'-3')
 if not (s[0] == p1 and
         s[1] == p0 and
         s[2] == Plane(normal_vector=Vector(['-1','-1','1']), constant_term='-3') and
