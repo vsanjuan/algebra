@@ -1,5 +1,6 @@
 from linsys import LinearSystem
 from plane import Plane
+from vector import Vector
 
 
 p0 = Plane(normal_vector=Vector(['1','1','1']), constant_term='1')
